@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/user');
+const Wallet = require('../models/wallet')
 
 passport.use(
     new GoogleStrategy(
@@ -18,6 +19,9 @@ passport.use(
                     googleId: profile.id,
                     email: profile.emails[0].value,
                     avatar: profile.photos[0].value
+                })
+                await Wallet.create({
+                    owner: user._id
                 })
                 return cb(null, user)
             } catch (err){

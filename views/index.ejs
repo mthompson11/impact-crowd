@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <a href="/auth/google">Log In Test</a>
-    <a href="/logout">Log Out Test</a>
-      <h3><%= user %></h3>
-  </body>
-</html>
+<%- include('./partials/header') %>
+<h1>Hello World</h1>
+<% projects.forEach(p => { %>
+  <div>
+    <img src=" <%=p.img %> ">
+    <h3><a href="/projects/<%= p._id %>"><%= p.projectName %></a></h3>
+    <p><%= p.description %></p>
+    <h4>Funding Status</h4>
+    <h4>
+      <%= p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0) %> / <%= p.target %>
+    </h4> 
+  </div>
+<% }) %>
+<%- include('./partials/footer') %>

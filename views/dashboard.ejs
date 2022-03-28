@@ -1,4 +1,9 @@
 <%- include('./partials/header') %>
 <h1>Hello World</h1>
 <a href="/projects/new">New Project</a>
+<form id="update-wallet-form" method="POST" action="/wallet/<%= user._id %>?_method=PUT">
+    <label>Amount</label>
+    <input type="text" name="amount">
+    <input type="submit" value="Add Funds">
+</form>
 <%- include('./partials/footer') %>

@@ -1,5 +1,7 @@
 <%- include('../partials/header') %>
 <h1>Hello World</h1>
+<h3>Wallet</h3>
+<h3><%= wallet.amount %></h3>
 <form id="add-pledge-form" method="POST" action="/projects/<%= projectId %>/pledges">
     <label>Amount</label>
     <input type="text" name="pledgeAmount">

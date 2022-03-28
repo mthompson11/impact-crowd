@@ -1,7 +1,7 @@
 const Project = require('../models/project')
 
 function newProject(req,res){
-    res.render('projects/new');
+    res.render('projects/new', {title: 'New Project'});
 };
 
 function create(req,res){

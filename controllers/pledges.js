@@ -12,7 +12,7 @@ function create(req, res){
         wallet.amount -= Number(req.body.pledgeAmount)
         wallet.save(function(err){
             Project.findById(req.params.id, function(err, project){
-                req.body.pledger = req.user_id
+                req.body.pledger = req.user._id
                 project.pledges.push(req.body)
                 project.save(function(err){
                     res.redirect(`/projects/${project._id}`)

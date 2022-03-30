@@ -1,4 +1,5 @@
 const Project = require('../models/project')
+const Wallet = require('../models/wallet')
 
 function newProject(req,res){
     res.render('projects/new', {title: 'New Project'});
@@ -16,9 +17,43 @@ function show(req, res){
     })
 }
 
+function edit(req,res){
+    Project.findById(req.params.id, function(err, project){
+        res.render('projects/edit', {title: 'Edit Project', project})
+    })
+}
+
+function update(req,res){
+    Project.findById(req.params.id, function(err, project){
+        project.projectName = req.body.projectName;
+        project.img = req.body.img;
+        project.description = req.body.description;
+        project.save(function(err){
+            res.redirect('/dashboard')
+        })
+    })
+};
+
+function deleteProject(req,res){
+    Project.findById(req.params.id, function(err, project){
+        project.pledges.forEach(function(pledge){
+            Wallet.findOne({owner : pledge.pledger}, function(err, wallet){
+                wallet.amount += pledge.pledgeAmount
+                wallet.save()
+            })
+        })
+        project.remove(function(err){
+            res.redirect('/dashboard') 
+        })
+    })
+}
+
 
 module.exports = {
     show,
     create,
-    new: newProject
+    new: newProject,
+    edit, 
+    update,
+    delete: deleteProject
 };

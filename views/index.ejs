@@ -1,14 +1,19 @@
 <%- include('./partials/header') %>
-<h1>Hello World</h1>
-<% projects.forEach(p => { %>
-  <div>
+<div class="main">
+  <% projects.forEach(p => { %>
+  <div class="project-tile">
     <img src=" <%=p.img %> ">
-    <h3><a href="/projects/<%= p._id %>"><%= p.projectName %></a></h3>
-    <p><%= p.description %></p>
-    <h4>Funding Status</h4>
-    <h4>
-      <%= p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0) %> / <%= p.target %>
-    </h4> 
+    <div>
+      <h5><%= p.projectName %></h5>
+      <p><%= p.description %></p>
+      <h5>Funding Status</h5>
+      <h5 class="status">
+        <%= `$${p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0)}` %> / <%= `$${p.target}` %>
+      </h5> 
+      <a href="/projects/<%= p._id %>" class="primary-button">Details</a>
+    </div>
   </div>
-<% }) %>
+  <% }) %>
+</div>
+  
 <%- include('./partials/footer') %>

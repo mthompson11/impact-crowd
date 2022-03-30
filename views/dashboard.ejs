@@ -1,9 +1,43 @@
 <%- include('./partials/header') %>
-<h1>Hello World</h1>
-<a href="/projects/new">New Project</a>
-<form id="update-wallet-form" method="POST" action="/wallet/<%= user._id %>?_method=PUT">
-    <label>Amount</label>
-    <input type="text" name="amount">
-    <input type="submit" value="Add Funds">
-</form>
+<div class="main">
+    <h1>My Projects</h1>
+    <table>
+        <tbody>
+            <% projects.forEach(function(p){ %>
+                <tr>
+                    <td><%= p.projectName %></td>
+                    <td><a href="/projects/<%= p._id %>/edit">Update</a></td>
+                    <td>
+                        <form action="/projects/<%= p._id %>?_method=DELETE" method="POST">
+                            <button type="submit">X</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <a href="/projects/new">New Project</a>
+    <h1>My Pledges</h1>
+    <table>
+        <thead>
+            <th>Project</th>
+            <th>Total Pledge</th>
+        </thead>
+        <tbody>
+            <% myPledges.forEach(function(pledge){ %>
+                <tr>
+                    <td> <%= pledge.name %> </td>
+                    <td> <%= pledge.totalPledge %> </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <h1>My Wallet</h1>
+    <h2> <%= wallet[0].amount %> </h2>
+    <form id="update-wallet-form" method="POST" action="/wallet/<%= user._id %>?_method=PUT">
+        <label>Amount</label>
+        <input type="text" name="amount">
+        <input type="submit" value="Add Funds">
+    </form>
+</div>
 <%- include('./partials/footer') %>

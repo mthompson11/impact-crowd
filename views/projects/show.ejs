@@ -1,5 +1,38 @@
 <%- include('../partials/header') %>
-<h1>Hello World</h1>
-<h1><%= project.projectName %></h1>
-<a href="/projects/<%= project._id %>/pledges/new">Pledge</a>
+<div class="main">
+    <div id="show-container">
+        <img id="show-img" src="<%= project.img %>">
+        <h1><%= project.projectName %></h1>
+        <p><%= project.description %></p>
+        <h5>Funding Status</h5>
+        <h5 class="status">
+        <%= `$${project.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0)}` %> / <%= `$${project.target}` %>
+        </h5> 
+        <a href="/projects/<%= project._id %>/pledges/new" class="primary-button" id="pledge-button">Add Pledge</a>
+        <h5>Recent Pledge History</h5>
+        <table>
+            <thead>
+                <th>Date</th>
+                <th>Amount</th>
+            </thead>
+            <tbody>
+                <% project.pledges.sort(function(a,b){ %>
+                    <% if(a.createdAt > b.createdAt){return -1} %>
+                    <% if(b.createdAt < a.createdAt){return 1} %>
+                    <% return 0 %>
+                    <% }) %>
+                <% i = 0 %>
+                <% project.pledges.forEach(function(pledge){ %>
+                    <% if(i < 5){ %>
+                        <% dt = new Date(pledge.createdAt) %>
+                        <tr>
+                            <td><%= `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}` %></td><td><%= `$${pledge.pledgeAmount}` %></td>
+                        </tr>
+                        <% i += 1 %>
+                    <% } %>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
 <%- include('../partials/footer') %>

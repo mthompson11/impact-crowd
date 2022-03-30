@@ -1,0 +1,12 @@
+<div class="main">
+    <h1>Edit Project</h1>
+    <form action="/projects/<%= project._id %>?_method=PUT" method="POST" autocomplete="off">
+        <p>Project Name</p>
+        <input type="text" name="projectName" value="<%= project.projectName %>">
+        <p>Image</p>
+        <input type="text" name="img" value="<%= project.img %>">
+        <p>Description</p>
+        <input type="text" name="description" value="<%= project.description %>">
+        <button type="submit">Update Project</button>
+    </form>
+</div>

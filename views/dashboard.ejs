@@ -39,7 +39,7 @@
         <a class="primary-button" href="/projects/new">New Project</a>
         <h1>My Pledges</h1>
         <% if(myPledges.length === 0){ %>
-            <h3>No pledges to view. Go pledge some shit!</h3>
+            <h3>No pledges to view.</h3>
         <% }else{ %>
             <table class="primary-table">
                 <thead>
@@ -50,16 +50,14 @@
                     <% myPledges.forEach(function(pledge){ %>
                         <tr>
                             <td> <%= pledge.name %> </td>
-                            <td> <%= pledge.totalPledge %> </td>
+                            <td> <%= `$${pledge.totalPledge.toLocaleString("en-US")}` %> </td>
                         </tr>
                     <% }) %>
                 </tbody>
             </table>
         <% } %>
         <h1>My Wallet</h1>
-        <% walletArray = wallet[0].amount.toString().split('') %>
-        <% if(wallet[0].amount > 999){walletArray.splice(walletArray.length - 3, 0, ',')} %>
-        <h2 class="status"> <%= `$${walletArray.join('')}` %> </h2>
+        <h2 class="status"> <%= `$${wallet[0].amount.toLocaleString("en-US")}` %> </h2>
         <form id="update-wallet-form" method="POST" action="/wallet/<%= user._id %>?_method=PUT">
             <div class="money-input">
                 <span>$</span>

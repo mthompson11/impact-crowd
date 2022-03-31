@@ -9,7 +9,7 @@
           <p><%= p.description %></p>
           <h5>Funding Status</h5>
           <h5 class="money-green">
-            <%= `$${p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0)}` %> / <%= `$${p.target}` %>
+            <%= `$${p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0).toLocaleString("en-US")}` %> / <%= `$${p.target.toLocaleString("en-US")}` %>
           </h5> 
           <a href="/projects/<%= p._id %>" class="primary-button">Details</a>
         </div>

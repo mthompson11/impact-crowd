@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<div class="main">
+    <form id="new-project-form" action="/projects" method="POST">
+        <label>Project Name</label>
+        <input type="text" name="projectName" required>
+        <label>Image</label>
+        <input type="text" name="img">
+        <label>Description</label>
+        <textarea name="description" maxlength="90" required></textarea>
+        <label>Target</label>
+        <div class="money-input">
+            <span>$</span>
+            <input type="number" min=".01" step="any" name="target" required>
+        </div>
+        <input class="primary-button" type="submit" value="Create Project">
+    </form>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+<div class="main">
+    <div id="edit-project-container">
+    <h1>Edit Project</h1>
+    <form id="edit-project-form" action="/projects/<%= project._id %>?_method=PUT" method="POST" autocomplete="off">
+        <label>Project Name</label>
+        <input type="text" name="projectName" value="<%= project.projectName %>" required>
+        <label>Image</label>
+        <input type="text" name="img" value="<%= project.img %>">
+        <label>Description</label>
+        <textarea name="description" maxlength="90" required><%= project.description %></textarea>
+        <button class="primary-button" type="submit">Update</button>
+    </form>
+    </div>
+</div>
+<%- include('../partials/footer') %>

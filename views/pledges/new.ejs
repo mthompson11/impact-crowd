@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<div class="main">
+    <div id="new-pledge-container">
+        <h1>Your Balance</h1>
+        <% walletArray = wallet.amount.toString().split('') %>
+        <% if(wallet.amount > 999){walletArray.splice(walletArray.length - 3, 0, ',')} %>
+        <h2 class="status"> <%= `$${walletArray.join('')}` %> </h2>
+        <form id="add-pledge-form" method="POST" action="/projects/<%= projectId %>/pledges">
+            <div class="money-input">
+                <span>$</span>
+                <input type="number" min=".01" max="<%= wallet.amount %>" step="any" name="pledgeAmount">
+            </div>
+            <input class="primary-button" type="submit" value="Add Pledge">
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer') %>

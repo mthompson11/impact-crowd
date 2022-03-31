@@ -85,8 +85,8 @@ body {
 
 #show-container {
   width: 90%;
-  max-width: 750px;
-  height: 100vh;
+  max-width: 1000px;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,13 +104,8 @@ body {
   align-items: center;
 }
 
-#show-container h5{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-#show-container h1{
-  margin-top: 15px;
+#show-content * {
+  margin: 10px;
 }
 
 td,th{
@@ -233,7 +228,7 @@ td,th{
   align-items: center;
 }
 
-.navbar-light .navbar-brand {
+.navbar-light .navbar-title {
   font-family: 'Shrikhand', cursive;
   font-size: 25px;
   color: #0d6efd;
@@ -329,18 +324,36 @@ td,th{
   width: 200px;
 }
 
+@media only screen and (min-width: 769px){
+  #show-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+  }
+
+  #show-content {
+    height: 500px;
+    padding: 0px 10px;
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+
+  #show-content * {
+    margin: 10px;
+  }
+
+  #show-img {
+    width: auto;
+    height: 500px;
+  }
+}
+
 @media only screen and (min-width:1020px){
   #explore-container {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
   }
-
-  #show-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px;
-  }
-
 }

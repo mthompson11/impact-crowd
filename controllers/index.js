@@ -14,14 +14,17 @@ function index(req, res){
      const myPledges = [];
      pledgedProjects.forEach(function(project){
         totalPledge = project.pledges.reduce(function(acc, cur){
+            console.log(acc);
             if(cur.pledger.equals(req.user._id)){
                 return acc + cur.pledgeAmount;
+            }else{
+                return acc
             }
         },0)
         myPledges.push({id:project._id, name: project.projectName, totalPledge});
     })
-     res.render('dashboard', {title: 'Dashboard', projects, myPledges, wallet});
-    }
+    res.render('dashboard', {title: 'Dashboard', projects, myPledges, wallet});
+}
 
 module.exports = {
     index,

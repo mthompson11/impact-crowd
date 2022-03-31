@@ -1,0 +1,22 @@
+ exports.projects = [
+    {projectName: 'Red Panda Conservation',
+    img: 'https://gray-wmctv-prod.cdn.arcpublishing.com/resizer/hH_MHyNbYKFnkd3e5UOpSkQNeY0=/1200x800/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/LDGOIFPTA5ETLMBEFFVPSVWZBI.jpg',
+    description: 'The Red Panda population is decreasing at a rapid rate. We are buying up protected habitats.',
+    target: 10000000},
+    {projectName: 'Permanent Housing Seattle',
+    img: 'https://assets.website-files.com/5ecc40c27d7802f8e0f7233e/61f9a5d5b0f3ef0f350e3d2c_Chief%20Seattle%20Club__al_al%20building%20rendering.jpeg',
+    description: 'Building multi-family residential space for families currenlty experiencing homelessness.',
+    target: 8000000},
+    {projectName: 'Geothermal Power Plant',
+    img: 'https://www.fuelcellstore.com/image/data/blog/renewable-energy-rundown-geothermal-energy.jpg',
+    description: 'Build a hydrothermal power plant that will provide clean energy to all of LA.',
+    target: 100000000},
+    {projectName: 'Yosemite Cleanup',
+    img: 'https://i.imgur.com/FfhiCnS.jpg',
+    description: 'Clean up crew to ensure sustainable hiking and climbing. All pledges receive day pass to the park.',
+    target: 5000},
+    {projectName: 'School Supplies for Teachers',
+    img: 'https://media.timeout.com/images/103493304/image.jpg',
+    description: "Teachers don't get paid enough to buy their own supplies. Let's buy them for them!",
+    target: 50000}
+  ];

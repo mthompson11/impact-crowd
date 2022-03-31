@@ -7,7 +7,7 @@
             <p><%= project.description %></p>
             <h5>Funding Status</h5>
             <h5 class="money-green">
-            <%= `$${project.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0)}` %> / <%= `$${project.target}` %>
+            <%= `$${project.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0).toLocaleString("en-US")}` %> / <%= `$${project.target.toLocaleString("en-US")}` %>
             </h5> 
             <a href="/projects/<%= project._id %>/pledges/new" class="primary-button" id="pledge-button">Add Pledge</a>
             <h5>Recent Pledge History</h5>
@@ -27,7 +27,7 @@
                         <% if(i < 5){ %>
                             <% dt = new Date(pledge.createdAt) %>
                             <tr>
-                                <td><%= `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}` %></td><td><%= `$${pledge.pledgeAmount}` %></td>
+                                <td><%= `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}` %></td><td><%= `$${pledge.pledgeAmount.toLocaleString("en-US")}` %></td>
                             </tr>
                             <% i += 1 %>
                         <% } %>

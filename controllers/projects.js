@@ -19,7 +19,11 @@ function show(req, res){
 
 function edit(req,res){
     Project.findById(req.params.id, function(err, project){
-        res.render('projects/edit', {title: 'Edit Project', project})
+        if(project.projectOwner.equals(req.user._id)){
+            res.render('projects/edit', {title: 'Edit Project', project})
+        }else{
+            res.redirect('/');
+        }
     })
 }
 

@@ -7,24 +7,21 @@ function index(req, res){
     });
 }
 
-function dashboard(req,res){
-    Project.find({projectOwner : req.user._id}, function(err,projects){
-        Wallet.find({owner : req.user._id}, function(err, wallet){
-            Project.find({ pledges : {$elemMatch : {pledger : req.user._id}}}, function(err, pledgedProjects){
-                myPledges = [];
-                pledgedProjects.forEach(function(project){
-                    totalPledge = project.pledges.reduce(function(acc, cur){
-                        if(cur.pledger.toString() === req.user._id.toString()){
-                            return acc + cur.pledgeAmount;
-                        }
-                    },0)
-                    myPledges.push({id:project._id, name: project.projectName, totalPledge})
-                })
-                res.render('dashboard', {title: 'Dashboard', projects, myPledges, wallet});
-            })
-        })
+ async function dashboard(req,res){
+     const projects = await Project.find({projectOwner : req.user._id});
+     const wallet = await Wallet.find({owner : req.user._id});
+     const pledgedProjects = await Project.find({ pledges : {$elemMatch : {pledger : req.user._id}}});
+     const myPledges = [];
+     pledgedProjects.forEach(function(project){
+        totalPledge = project.pledges.reduce(function(acc, cur){
+            if(cur.pledger.equals(req.user._id)){
+                return acc + cur.pledgeAmount;
+            }
+        },0)
+        myPledges.push({id:project._id, name: project.projectName, totalPledge});
     })
-}
+     res.render('dashboard', {title: 'Dashboard', projects, myPledges, wallet});
+    }
 
 module.exports = {
     index,

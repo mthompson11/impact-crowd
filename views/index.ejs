@@ -1,19 +1,21 @@
 <%- include('./partials/header') %>
 <div class="main">
-  <% projects.forEach(p => { %>
-  <div class="project-tile">
-    <img src=" <%=p.img %> ">
-    <div>
-      <h5><%= p.projectName %></h5>
-      <p><%= p.description %></p>
-      <h5>Funding Status</h5>
-      <h5 class="status">
-        <%= `$${p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0)}` %> / <%= `$${p.target}` %>
-      </h5> 
-      <a href="/projects/<%= p._id %>" class="primary-button">Details</a>
-    </div>
+  <div id="explore-container">
+    <% projects.forEach(p => { %>
+      <div class="project-tile">
+        <img src=" <%=p.img %> ">
+        <div>
+          <h4><%= p.projectName %></h4>
+          <p><%= p.description %></p>
+          <h5>Funding Status</h5>
+          <h5 class="money-green">
+            <%= `$${p.pledges.reduce(function(acc,cur){return acc += cur.pledgeAmount}, 0)}` %> / <%= `$${p.target}` %>
+          </h5> 
+          <a href="/projects/<%= p._id %>" class="primary-button">Details</a>
+        </div>
+      </div>
+    <% }) %>
   </div>
-  <% }) %>
 </div>
   
 <%- include('./partials/footer') %>

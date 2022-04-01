@@ -1,5 +1,5 @@
-const Project = require('../models/project')
-const Wallet = require('../models/wallet')
+const Project = require('../models/project');
+const Wallet = require('../models/wallet');
 
 function newProject(req,res){
     res.render('projects/new', {title: 'New Project'});
@@ -13,9 +13,9 @@ function create(req,res){
 
 function show(req, res){
     Project.findById(req.params.id, function(err, project){
-        res.render('projects/show', {title : 'Project Detail', project})
-    })
-}
+        res.render('projects/show', {title : 'Project Detail', project});
+    });
+};
 
 function edit(req,res){
     Project.findById(req.params.id, function(err, project){
@@ -23,9 +23,9 @@ function edit(req,res){
             res.render('projects/edit', {title: 'Edit Project', project})
         }else{
             res.redirect('/');
-        }
-    })
-}
+        };
+    });
+};
 
 function update(req,res){
     Project.findById(req.params.id, function(err, project){
@@ -33,9 +33,9 @@ function update(req,res){
         project.img = req.body.img;
         project.description = req.body.description;
         project.save(function(err){
-            res.redirect('/dashboard')
-        })
-    })
+            res.redirect('/dashboard');
+        });
+    });
 };
 
 function deleteProject(req,res){
@@ -44,14 +44,13 @@ function deleteProject(req,res){
             Wallet.findOne({owner : pledge.pledger}, function(err, wallet){
                 wallet.amount += pledge.pledgeAmount
                 wallet.save()
-            })
-        })
+            });
+        });
         project.remove(function(err){
             res.redirect('/dashboard') 
-        })
-    })
-}
-
+        });
+    });
+};
 
 module.exports = {
     show,

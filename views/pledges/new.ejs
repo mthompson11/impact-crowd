@@ -4,7 +4,7 @@
         <h1>Your Balance</h1>
         <% walletArray = wallet.amount.toString().split('') %>
         <% if(wallet.amount > 999){walletArray.splice(walletArray.length - 3, 0, ',')} %>
-        <h2 class="status"> <%= `$${walletArray.join('')}` %> </h2>
+        <h2 class="money-green"> <%= `$${walletArray.join('')}` %> </h2>
         <form id="add-pledge-form" method="POST" action="/projects/<%= projectId %>/pledges">
             <div class="money-input">
                 <span>$</span>
